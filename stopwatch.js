@@ -2,6 +2,7 @@ var h1 = document.getElementsByTagName('h1')[0],
     time = document.getElementById('time'),
     start = document.getElementById('start'),
     formatTime,
+    interval,
     milliseconds = 0, seconds = 0, minutes = 0;    
 
 
@@ -28,12 +29,19 @@ function pad(number) {
 
 function startClock() {
     add();
-    console.log("milliseconds " + milliseconds)
-    console.log("seconds " + seconds);
-    console.log("minutes " + minutes);
+    // console.log("milliseconds " + milliseconds)
+    // console.log("seconds " + seconds);
+    // console.log("minutes " + minutes);
     formatTime = pad(minutes) + ":" + pad(seconds) + ":" + pad(milliseconds);
     time.innerHTML = formatTime;
 }
-startClock();
 
-document.getElementById("start").onclick = function() {setInterval(startClock, 1)};
+function startTimer() {
+    interval = setInterval(startClock, 1);
+}
+
+function stopTimer() {
+    clearInterval(interval);
+}
+document.getElementById("start").onclick = function() {startTimer()};
+document.getElementById("stop").onclick = function() {stopTimer()};
