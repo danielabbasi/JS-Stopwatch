@@ -3,15 +3,16 @@ var h1 = document.getElementsByTagName('h1')[0],
     start = document.getElementById('start'),
     formatTime,
     interval,
-    milliseconds = 0, seconds = 0, minutes = 0;    
+    buttonState = 0,
+    milliseconds = 0, seconds = 0, minutes = 0;
 
 
-function add(){
+function add() {
     milliseconds++;
-    if(milliseconds >= 100){
+    if (milliseconds >= 100) {
         milliseconds = 0;
         seconds++;
-        if(seconds >= 60){
+        if (seconds >= 60) {
             seconds = 0;
             minutes++;
         }
@@ -36,12 +37,15 @@ function startClock() {
     time.innerHTML = formatTime;
 }
 
-function startTimer() {
-    interval = setInterval(startClock, 1);
-}
-
-function stopTimer() {
-    clearInterval(interval);
-}
-document.getElementById("start").onclick = function() {startTimer()};
-document.getElementById("stop").onclick = function() {stopTimer()};
+start.addEventListener('click', function () {
+    console.log("clicked")
+    if (buttonState == 0) {
+        interval = setInterval(startClock, 1);
+        this.textContent = 'Stop';
+        buttonState = 1;
+    } else {
+        clearInterval(interval);
+        this.textContent = 'Start';
+        buttonState = 0;
+    }
+});
