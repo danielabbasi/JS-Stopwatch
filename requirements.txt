@@ -1,0 +1,14 @@
+Functional Requirements
+
+Must have clock with hours, minutes and seconds (milliseconds?)
+Must have a start stopwatch button
+Must have a stop stopwatch button
+Must have a reset stopwatch button
+Must have a lap stopwatch button
+
+Non Functional Requirements
+
+Start Stopwatch button must be green
+Stop Stopwatch button must be red
+Lap times must be red or green depending on fastest/slowest laptimes 
+
