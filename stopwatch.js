@@ -8,6 +8,12 @@ let buttonStateLap = 0;
 let milliseconds = 0, seconds = 0, minutes = 0;
 let lapTimes = [];
 
+function millisToMinutesAndSeconds(milliseconds) {
+    var minutes = Math.floor(milliseconds / 60000);
+    var seconds = ((milliseconds % 60000) / 1000).toFixed(0);
+    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+  }
+
 // Increases the timer
 function updateTime() {
     milliseconds++;
@@ -21,6 +27,14 @@ function updateTime() {
     }
 }
 
+function millisecondConversion(milliseconds) {
+    var milliseconds = milli % 1000;
+    var seconds = Math.floor((milli / 1000) % 60);
+    var minutes = Math.floor((milli / (60 * 1000)) % 60);
+
+    return minutes + ":" + seconds + "." + milliseconds;
+}
+
 // Adds a preceding 0
 const pad = (number) => number < 10 ? '0' + number : number
 
@@ -32,7 +46,7 @@ function startClock() {
 }
 
 //On start button click start timer function, or show stop button
-start.addEventListener('click', function() {  //DIFFERENCE BETWEEN FUNCTION AND =>
+start.addEventListener('click', function() {  //DIFFERENCE BETWEEN FUNCTION AND => why does this break with =>
     console.log("clicked")
     if (buttonState == 0) {
         interval = setInterval(startClock, 10);
