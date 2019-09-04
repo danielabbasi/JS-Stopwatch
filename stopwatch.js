@@ -28,13 +28,11 @@ const pad = (number) => number < 10 ? '0' + number : number
 function startClock() {
     updateTime();
     formatTime = `${pad(minutes)}:${pad(seconds)}:${pad(milliseconds)}`
-    formatTime2 = formatTime.minutes
-    console.log(formatTime2)
     time.textContent = formatTime;
 }
 
 //On start button click start timer function, or show stop button
-start.addEventListener('click', function () {
+start.addEventListener('click', function() {  //DIFFERENCE BETWEEN FUNCTION AND =>
     console.log("clicked")
     if (buttonState == 0) {
         interval = setInterval(startClock, 10);
@@ -88,8 +86,5 @@ lap.addEventListener('click', function () {
         }).join('') + '</ul>';
 
         buttonStateLap = 0;
-
-
     }
-
 });
