@@ -16,7 +16,6 @@ class Timer {
         }
     }
     
-    
     millisecondConversion(timeElapsed) {
         var milliseconds = timeElapsed % 100;
         var seconds = Math.floor((timeElapsed / 100) % 60);
@@ -32,7 +31,6 @@ class Timer {
             this.isRunning = true;
             this.startStopText.textContent = 'Stop';
             this.lapResetText.textContent = 'Lap';
-
         }
         else {
             clearInterval(this.interval)
@@ -52,25 +50,19 @@ class Timer {
         else {
             //Lap button clicked
             this.lapTimesArray.push(this.timeElapsed);
-            let difference = [];
             this.lapTimesArray.reduce((a, b) => {
-                difference.push(b - a)
+                this.lapTimesDifferenceArray.push(b - a)
                 return b
             })
-            console.log("difference " + difference[difference.length-1]);
+            let currentLap = this.lapTimesDifferenceArray.pop
+            // currentLap.push(this.lapTimesDifferenceArray.pop());
+            console.log("current lap " + currentLap);
+        
+            lapList.innerHTML = '<ul>' + currentLap.map(function (lapTimess) {
+            return '<li>' + lapTimess + '<li>';
+            }).join('') + '</ul>';
+            console.log("difference " + this.lapTimesDifferenceArray[this.lapTimesDifferenceArray.length - 1]);
         }
-    }
-
-    // calcLapTimes() {
-    //     if (this.lapTimesArray.length == 0) {
-    //         console.log("New array created")
-    //         this.lapTimesArray.push(this.timeElapsed);
-    //     } else {
-    //     }
-    // }
-
-    DOMElement() {
-
     }
 }
 
