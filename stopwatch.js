@@ -6,7 +6,7 @@ let interval = 0;
 let buttonState = 0;
 let buttonStateLap = 0;
 let milliseconds = 0, seconds = 0, minutes = 0;
-let lapTimes = [];
+let this.lapTimesArray = [];
 
 function millisToMinutesAndSeconds(milliseconds) {
     var minutes = Math.floor(milliseconds / 60000);
@@ -64,14 +64,14 @@ start.addEventListener('click', function() {  //DIFFERENCE BETWEEN FUNCTION AND 
 });
 
 function calcLapTimes() {
-    if (lapTimes.length == 0) {
-        lapTimes.push(formatTime);
+    if (this.lapTimesArray.length == 0) {
+        this.lapTimesArray.push(formatTime);
         console.log("ahh")
     } else {
         // console.log(lapTimes[lapTimes.length - 1])
-        newLapTime = formatTime - lapTimes[lapTimes.length - 1];
+        newLapTime = formatTime - this.lapTimesArray[this.lapTimesArray.length - 1];
         console.log(newLapTime);
-        lapTimes.push(formatTime);
+        this.lapTimesArray.push(formatTime);
         // lapTimes.push(formatTime - lapTimes[lapTimes.length - 1]) 
     }
     // lapTimes[0] = formatTime;
@@ -93,9 +93,9 @@ lap.addEventListener('click', function () {
     } else {
         // lapTimes.push(formatTime);
         calcLapTimes();
-        console.log(lapTimes[0]);
+        console.log(this.lapTimesArray[0]);
         var lapList = document.querySelector('#lapList')
-        lapList.innerHTML = '<ul>' + lapTimes.map(function (lapTimes) {
+        lapList.innerHTML = '<ul>' + this.lapTimesArray.map(function (lapTimes) {
             return '<li>' + lapTimes + '<li>';
         }).join('') + '</ul>';
 

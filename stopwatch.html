@@ -10,13 +10,15 @@
         <h1>
             <div id="time">00:00:00</div>
         </h1>
-        <div class="buttons">
-            <button id="lap">Lap</button>
-            <button id="start">Start</button>
+        <div class="button__wrapper">
+            <button class="button__item" id="lapReset" onclick="this.lapReset()">Lap</button>
+            <button class="button__item" id="startStop" onclick="startStop()">Start</button>
         </div>
     </div>
     <div id="lapList"></div>
-    <script src="stopwatch.js"></script>
+    <!-- <script src="stopwatch.js"></script> -->
+    <script src="timer.js"></script>
+
 </body>
 
 </html>

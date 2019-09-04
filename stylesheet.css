@@ -15,11 +15,11 @@ h1 {
     padding-top: 70px;
 }
 
-.buttons {
+.button__wrapper {
     text-align: center;
 }
 
-button {
+.button__item {
     background-color: rgb(94, 94, 94);
     border: none;
     color: white;
