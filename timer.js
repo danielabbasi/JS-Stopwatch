@@ -24,6 +24,8 @@ class Timer {
 
         this.resetTime = () => {
             this.timeElapsed = 0;
+            this.lapTimesArray = [];
+            this.lapTimesDifferenceArray = [];
             this.onUpdate();
         }
     }
@@ -44,24 +46,13 @@ class Timer {
         }
         else {
             this.lapTimesArray.push(this.timeElapsed);
-            console.log("lapt times " + this.lapTimesArray)
-            
-            function findDifference(array) {
-                return array.slice(1).map(function(value, index) { 
-                    return value - array[index];
-                })
-            };
-
-            console.log(findDifference(this.lapTimesArray))
+            this.lapTimesDifferenceArray = findDifference(this.lapTimesArray)
+            updateLapTimesTable(this.lapTimesDifferenceArray);
         }
     }
 }
 
 timer = new Timer(onUpdate);
-
-function createTable() {
-    
-}
 
 function onUpdate() {
     updateTimeDisplay(millisecondConversion(timer.timeElapsed))
@@ -78,6 +69,24 @@ const millisecondConversion = (timeElapsed) => {
     return pad(minutes) + ":" + pad(seconds) + "." + pad(milliseconds);
 }
 
+const findDifference = (array) => {
+    return array.slice(1).map(function(value, index) { 
+        return value - array[index];
+    })
+}
+
+const updateLapTimesTable = (laps) => {
+    lapTable.innerHTML = '<table class="timer__table">' + laps.reverse().map(function (value, index) {
+        return '<tr><td>' + 'Lap ' + (index+1) + '.' + '</td><td>' + millisecondConversion(value) + '</td></tr>';
+    }).join('') + '</table>';
+}
+
+// $body += `<tr><td>${i + 1}</td><td>${diff}</div></tr>`;
+
+// `<table>${body}</table>`
+
+// innerHTML = ''
+
 const updateStartStopButtonText = (isRunning) => isRunning ? 'Stop' : 'Start';
 
 const updateStartStopButton = (text) => document.getElementById('startStop').textContent = text;
@@ -87,3 +96,5 @@ const updateLapResetButtonText = (timeElapsed, isRunning) => timeElapsed && isRu
 const updateLapResetButton = (text) => document.getElementById('lapReset').textContent = text;
 
 const updateTimeDisplay = (time) => document.getElementById('time').textContent = time;
+
+const updateTableDisplay = (table) => document.getElementById('lapTable').innerHTML = table;

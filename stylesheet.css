@@ -36,3 +36,9 @@ h1 {
 #start {
     background-color: #006400;
 }
+
+.timer__table {
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+}
