@@ -26,11 +26,11 @@ class Timer {
             this.timeElapsed = 0;
             this.lapTimesArray = [];
             this.lapTimesDifferenceArray = [];
+            clearTableText();
             this.onUpdate();
         }
     }
     
-
     startStop() {
         if (this.isRunning === false) {
             this.updateTime();
@@ -57,7 +57,7 @@ timer = new Timer(onUpdate);
 function onUpdate() {
     updateTimeDisplay(millisecondConversion(timer.timeElapsed))
     updateStartStopButton(updateStartStopButtonText(timer.isRunning))
-    updateLapResetButton(updateLapResetButtonText(timer.timeElapsed, timer.isRunning))    
+    updateLapResetButton(updateLapResetButtonText(timer.timeElapsed, timer.isRunning))
 }
 
 const millisecondConversion = (timeElapsed) => {
@@ -77,15 +77,9 @@ const findDifference = (array) => {
 
 const updateLapTimesTable = (laps) => {
     lapTable.innerHTML = '<table class="timer__table">' + laps.reverse().map(function (value, index) {
-        return '<tr><td>' + 'Lap ' + (index+1) + '.' + '</td><td>' + millisecondConversion(value) + '</td></tr>';
+        return '<tr><td>' + 'Lap ' + (laps.length-index) + '.' + '</td><td>' + millisecondConversion(value) + '</td></tr>';
     }).join('') + '</table>';
 }
-
-// $body += `<tr><td>${i + 1}</td><td>${diff}</div></tr>`;
-
-// `<table>${body}</table>`
-
-// innerHTML = ''
 
 const updateStartStopButtonText = (isRunning) => isRunning ? 'Stop' : 'Start';
 
@@ -97,4 +91,4 @@ const updateLapResetButton = (text) => document.getElementById('lapReset').textC
 
 const updateTimeDisplay = (time) => document.getElementById('time').textContent = time;
 
-const updateTableDisplay = (table) => document.getElementById('lapTable').innerHTML = table;
+const clearTableText = (time) => document.getElementById('lapTable').innerHTML = '';
