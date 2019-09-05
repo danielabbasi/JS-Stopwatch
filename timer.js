@@ -11,55 +11,57 @@ class Timer {
             this.isRunning = true
 
             this.interval = setInterval(() => {
-                this.timeElapsed++
-                this.onUpdate()
-                console.log(onUpdate);
+                this.timeElapsed++;
+                this.onUpdate();
             }, 10)
         }
 
         this.stopTime = () => {
             clearInterval(this.interval)
-            this.isRunning = false
-            this.onUpdate()
+            this.isRunning = false;
+            this.onUpdate();
+        }
+
+        this.resetTime = () => {
+            this.timeElapsed = 0;
+            this.onUpdate();
         }
     }
     
 
     startStop() {
         if (this.isRunning === false) {
-            this.updateTime()
+            this.updateTime();
         }
         else {
-            this.stopTime()
+            this.stopTime();
         }
     }    
 
-    // lapReset() {
-    //     if (this.isRunning == false) {
-    //         clearInterval(this.interval);
-    //         this.timeElapsed = 0;
-    //     }
-    //     else {
-    //         //Lap button clicked
-    //         this.lapTimesArray.push(this.timeElapsed);
+    lapReset() {
+        if (this.isRunning == false) {
+            this.resetTime();
+        }
+        else {
+            this.lapTimesArray.push(this.timeElapsed);
+            console.log("lapt times " + this.lapTimesArray)
+            
+            function findDifference(array) {
+                return array.slice(1).map(function(value, index) { 
+                    return value - array[index];
+                })
+            };
 
-    //         this.lapTimesDifferenceArray = this.lapTimesArray.map(lap = => {
-    //             return lap - 
-    //         } )
-
-    //         console.log(this.lapTimesDifferenceArray);
-    //         let currentLap = this.lapTimesDifferenceArray.pop
-    //         console.log("current lap " + currentLap);
-        
-    //         lapList.innerHTML = '<ul>' + currentLap.map(function (lapTimess) {
-    //         return '<li>' + lapTimess + '<li>';
-    //         }).join('') + '</ul>';
-    //         console.log("difference " + this.lapTimesDifferenceArray[this.lapTimesDifferenceArray.length - 1]);
-    //     }
-    // }
+            console.log(findDifference(this.lapTimesArray))
+        }
+    }
 }
 
 timer = new Timer(onUpdate);
+
+function createTable() {
+    
+}
 
 function onUpdate() {
     updateTimeDisplay(millisecondConversion(timer.timeElapsed))
