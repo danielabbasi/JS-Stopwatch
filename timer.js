@@ -5,14 +5,10 @@ class Timer {
         this.lapTimePress = 0;
         this.lapTimesArray = [];
         this.lapTimesDifferenceArray = [];
-        this.timeText = document.getElementById('time');
-        this.startStopText = document.getElementById('startStop');
-        this.lapResetText = document.getElementById('lapReset');
-        this.timeText = document.getElementById('time');
 
         this.updateTime = () => {
             this.timeElapsed++;
-            this.timeText.textContent = this.millisecondConversion(this.timeElapsed);
+            document.getElementById('time').textContent = this.millisecondConversion(this.timeElapsed);
         }
     }
     
@@ -29,33 +25,40 @@ class Timer {
         if (this.isRunning == false) {
             this.interval = setInterval(this.updateTime, 10);
             this.isRunning = true;
-            this.startStopText.textContent = 'Stop';
-            this.lapResetText.textContent = 'Lap';
+            document.getElementById('startStop').textContent = 'Stop';
+            document.getElementById('lapReset').textContent = 'Lap';
         }
         else {
             clearInterval(this.interval)
             this.isRunning = false;
-            this.startStopText.textContent = 'Start';
-            this.lapResetText.textContent = 'Reset';
+            document.getElementById('startStop').textContent = 'Start';
+            document.getElementById('lapReset').textContent = 'Reset';
         }
     }    
 
     lapReset() {
         if (this.isRunning == false) {
             //Reset hit
-            this.timeText.textContent = '00:00:00';
+            document.getElementById('time').textContent = '00:00.00';
             clearInterval(this.interval);
             this.timeElapsed = 0;
         }
         else {
             //Lap button clicked
             this.lapTimesArray.push(this.timeElapsed);
-            this.lapTimesArray.reduce((a, b) => {
-                this.lapTimesDifferenceArray.push(b - a)
-                return b
-            })
+            // this.lapTimesArray.reduce((a, b) => {
+            //     this.lapTimesDifferenceArray.push(b - a)
+            //     return b
+            // })
+
+            this.lapTimesDifferenceArray = this.lapTimesArray.map(lap = => {
+                return lap - 
+            } )
+
+            
+
+            console.log(this.lapTimesDifferenceArray);
             let currentLap = this.lapTimesDifferenceArray.pop
-            // currentLap.push(this.lapTimesDifferenceArray.pop());
             console.log("current lap " + currentLap);
         
             lapList.innerHTML = '<ul>' + currentLap.map(function (lapTimess) {
