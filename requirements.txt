@@ -1,10 +1,10 @@
 Functional Requirements
 
-Must have clock with hours, minutes and seconds (milliseconds?)
-Must have a start stopwatch button
-Must have a stop stopwatch button
-Must have a reset stopwatch button
-Must have a lap stopwatch button
+X Must have clock with minutes and seconds milliseconds
+X Must have a start stopwatch button
+X Must have a stop stopwatch button
+X Must have a reset stopwatch button
+X Must have a lap stopwatch button
 
 Non Functional Requirements
 
