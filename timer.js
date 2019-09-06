@@ -47,7 +47,8 @@ class Timer {
         else {
             this.lapTimesArray.push(this.timeElapsed);
             this.lapTimesDifferenceArray = findDifference(this.lapTimesArray)
-            updateLapTimesTable(this.lapTimesDifferenceArray);
+            updateTopLabels(this.lapTimesDifferenceArray);
+            updateTable(this.lapTimesDifferenceArray);
         }
     }
 }
@@ -56,8 +57,9 @@ timer = new Timer(onUpdate);
 
 function onUpdate() {
     updateTimeDisplay(millisecondConversion(timer.timeElapsed))
-    updateStartStopButton(updateStartStopButtonText(timer.isRunning))
+    updateStartStopButton(updateStartStopButtonText(timer.isRunning), updateStartStopButtonColour(timer.isRunning))
     updateLapResetButton(updateLapResetButtonText(timer.timeElapsed, timer.isRunning))
+    updateTopLabels(timer.timeElapsed)
 }
 
 const millisecondConversion = (timeElapsed) => {
@@ -70,20 +72,36 @@ const millisecondConversion = (timeElapsed) => {
 }
 
 const findDifference = (array) => {
-    return array.slice(1).map(function(value, index) { 
-        return value - array[index];
+    return array.map(function(value, index) {
+        if (index === 0) {
+            return value
+        } else {
+            return value - array[index-1];
+        }
     })
 }
 
-const updateLapTimesTable = (laps) => {
+const updateTopLabels = (timeElapsed, lapTimesArray) => {
+    
+    document.getElementById('top-time').innerText = millisecondConversion(timeElapsed);
+
+}
+
+
+const updateTable = (laps) => {
+
+        // console.log("Max: " + Math.max.apply(null, laps));
+    // console.log("Min: " + Math.min.apply(null, laps))
     lapTable.innerHTML = '<table class="timer__table">' + laps.reverse().map(function (value, index) {
-        return '<tr><td>' + 'Lap ' + (laps.length-index) + '.' + '</td><td>' + millisecondConversion(value) + '</td></tr>';
+        return '<tr><td>Lap ' + (laps.length-index) + '.</td><td>' + millisecondConversion(value) + '</td></tr>';
     }).join('') + '</table>';
 }
 
 const updateStartStopButtonText = (isRunning) => isRunning ? 'Stop' : 'Start';
 
 const updateStartStopButton = (text) => document.getElementById('startStop').textContent = text;
+
+const updateStartStopButtonColour = (isRunning) => document.getElementById('startStop').style.backgroundColor = isRunning ? "red" : "green";
 
 const updateLapResetButtonText = (timeElapsed, isRunning) => timeElapsed && isRunning > 0 ? 'Lap' : 'Reset';
 

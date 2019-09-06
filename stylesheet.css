@@ -47,3 +47,7 @@ h1 {
     width: 180px;
     text-align: center;
 }
+
+.button__startStop {
+    background-color: green;
+}

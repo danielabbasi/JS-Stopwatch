@@ -11,11 +11,17 @@
             <div id="time">00:00:00</div>
         </h1>
         <div class="button__wrapper">
-            <button class="button__item" id="lapReset" onclick="timer.lapReset()">Lap</button>
-            <button class="button__item" id="startStop" onclick="timer.startStop()">Start</button>
+            <button class="button__item button__lapReset" id="lapReset" onclick="timer.lapReset()">Lap</button>
+            <button class="button__item button__startStop" id="startStop" onclick="timer.startStop()">Start</button>
         </div>
-    <div id="lapTable"></div>
-
+        <table class="timer__table">
+            <tr>
+                <td id="top-label"></td>
+                <td id="top-time"></td>
+            </tr>
+            
+        </table>
+        <div id="lapTable"></div>
     </div>
     <!-- <script src="stopwatch.js"></script> -->
     <script src="timer.js"></script>
