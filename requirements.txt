@@ -5,10 +5,13 @@ X Must have a start stopwatch button
 X Must have a stop stopwatch button
 X Must have a reset stopwatch button
 X Must have a lap stopwatch button
+X Must have reset stopwatch button set display time back to 0
+X Must have reset stopwatch button clear lap times table
+X Lap Button must record their lap into a table
 
 Non Functional Requirements
 
-Start Stopwatch button must be green
-Stop Stopwatch button must be red
+X Start Stopwatch button must be green
+X Stop Stopwatch button must be red
 Lap times must be red or green depending on fastest/slowest laptimes 
 
